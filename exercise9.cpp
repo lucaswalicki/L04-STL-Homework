@@ -2,20 +2,17 @@
 #include <algorithm>
 #include <string>
 
-bool is_palindrome(std::string a)
+bool is_palindrom(const std::string & a)
 {
-    std::string b = a;
-    std::reverse(b.begin(), b.end());
-    std::pair<std::string::iterator, std::string::iterator> stringPair;
-    stringPair = mismatch(a.begin(), a.end(), b.begin());
-    return stringPair.first == a.end();
+    auto iterators = std::mismatch(a.begin(),a.end(), a.rbegin(), a.rend()); // zwraca pare iteratorow wskazujac na pierwsze elementy ktore sa różne
+    return (iterators.first == a.end() and iterators.second == a.rend());
+
 }
 
 int main()
 {
-    if(is_palindrome("asdsa"))
-        std::cout << "Yes" << std::endl; 
-    else 
-        std::cout << "No" << std::endl;
-    return 0;
+std::string a = "kajak";
+
+std::cout <<is_palindrom(a) <<std::endl;
+return 0;
 }
